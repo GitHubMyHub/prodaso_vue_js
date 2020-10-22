@@ -42,7 +42,7 @@ export default {
     },
     deleteMachine(id) {
       axios
-        .delete(`http://192.168.178.35:8080/machine/${id}`)
+        .delete(`http://localhost:8080/machine/${id}`)
         .then(() => this.machines = this.machines.filter((machine) => machine.id !== id))
         .catch((err) => console.log(err));
 
@@ -52,7 +52,7 @@ export default {
       const { name, status } = newMachine;
 
       axios
-        .post("http://192.168.178.35:8080/addMachine", {
+        .post("http://localhost:8080/addMachine", {
           name,
           status,
         })
@@ -64,7 +64,7 @@ export default {
 
       const {id, name, status} = this.machine
 
-      axios.put(`http://192.168.178.35:8080/machine/${id}`, {name, status}).then().catch(err => console.log(err))
+      axios.put(`http://localhost:8080/machine/${id}`, {name, status}).then().catch(err => console.log(err))
 
       console.log(this.machine)
       this.showModal = false
@@ -72,7 +72,7 @@ export default {
   },
   created() {
     axios
-      .get("http://192.168.178.35:8080/machines")
+      .get("http://localhost:8080/machines")
       .then((res) => (this.machines = res.data))
       .catch((err) => console.log(err));
   },
